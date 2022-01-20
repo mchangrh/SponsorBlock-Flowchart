@@ -1,0 +1,25 @@
+name: Export drawio images
+on: [push, workflow_dispatch]
+jobs:
+  drawio-export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Export drawio files to asciidoctor and png files
+        uses: rlespinasse/drawio-export-action@v2
+        with:
+          format: [png, svg]
+          transparent: false
+          output: export
+
+      - name: Commit changed files
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "export: create draw.io exported files"
+          commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+        if: github.ref == 'refs/heads/main'
