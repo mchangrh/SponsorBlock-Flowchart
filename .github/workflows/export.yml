@@ -7,18 +7,16 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v2
 
-      - name: Prepare image
-        run: |
-          docker pull rlespinasse/drawio-desktop-headless
-          ls -lah
-          pwd
-
-      - name: Export files
-        run: |
-          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/export/SB_Flowchart_small.png /data/SB_Flowchart.drawio
-          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/export/SB_Flowchart_large.png /data/SB_Flowchart.drawio
-          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/export/SB_Flowchart.svg /data/SB_Flowchart.drawio
-          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/export/SB_Flowchart.xml /data/SB_Flowchart.drawio
+      - name: Convert Files
+        uses: addnab/docker-run-action@v3
+        with:
+          image: rlespinasse/drawio-desktop-headless
+          options:  -v ${{ github.workspace }}:/data
+          run: |
+            -x -o /data/export/SB_Flowchart_small.png /data/SB_Flowchart.drawio
+            -x -o /data/export/SB_Flowchart_large.png /data/SB_Flowchart.drawio
+            -x -o /data/export/SB_Flowchart.svg /data/SB_Flowchart.drawio
+            -x -o /data/export/SB_Flowchart.xml /data/SB_Flowchart.drawio
 
       - name: Commit changed files
         uses: stefanzweifel/git-auto-commit-action@v4
