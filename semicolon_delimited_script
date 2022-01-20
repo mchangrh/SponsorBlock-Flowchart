@@ -1,0 +1,5 @@
+-x -o /data/export/SB_Flowchart_small.png /data/SB_Flowchart.drawio
+-x -o /data/export/SB_Flowchart_large.png /data/SB_Flowchart.drawio
+-x -o /data/export/SB_Flowchart.svg /data/SB_Flowchart.drawio
+-x -o /data/export/SB_Flowchart.xml /data/SB_Flowchart.drawio
+
