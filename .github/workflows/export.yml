@@ -15,7 +15,6 @@ jobs:
 
       - name: Export files
         run: |
-          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless ls -lah /data/
           docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/export/SB_Flowchart_small.png /data/SB_Flowchart.drawio
           docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/export/SB_Flowchart_large.png /data/SB_Flowchart.drawio
           docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/export/SB_Flowchart.svg /data/SB_Flowchart.drawio
