@@ -10,8 +10,6 @@ jobs:
       - name: Prepare image
         run: |
           docker pull rlespinasse/drawio-export
-      
-      - name: Run shell script
 
       - name: Export files
         run: |
