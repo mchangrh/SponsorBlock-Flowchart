@@ -7,37 +7,18 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v2
 
-      - name: Export small png files
-        uses: rlespinasse/drawio-export-action@v2
-        with:
-          format: png
-          transparent: false
-          scale: 200
-          output: export/SB_Flowchart_small.png
-          action-mode: all
-
-      - name: Export large png files
-        uses: rlespinasse/drawio-export-action@v2
-        with:
-          format: png
-          transparent: false
-          scale: 300
-          output: export/SB_Flowchart_large.png
-          action-mode: all
-
-      - name: Export svg files
-        uses: rlespinasse/drawio-export-action@v2
-        with:
-          format: svg
-          output: export/SB_Flowchart.svg
-          action-mode: all
+      - name: Prepare image
+        run: |
+          docker pull rlespinasse/drawio-export
       
-      - name: Export xml files
-        uses: rlespinasse/drawio-export-action@v2
-        with:
-          format: xml
-          output: export/SB_Flowchart.xml
-          action-mode: all
+      - name: Run shell script
+
+      - name: Export files
+        run: |
+          docker run -v ${PWD}:/data rlespinasse/drawio-desktop-headleio-desktop-headless "$DRAWIO_DESKTOP_EXECUTABLE_PATH" -x -o /data/export/SB_Flowchart_small.png  /data/SB_Flowchart.drawio
+          docker run -v ${PWD}:/data rlespinasse/drawio-desktop-headleio-desktop-headless "$DRAWIO_DESKTOP_EXECUTABLE_PATH" -x -o /data/export/SB_Flowchart_large.png  /data/SB_Flowchart.drawio
+          docker run -v ${PWD}:/data rlespinasse/drawio-desktop-headleio-desktop-headless "$DRAWIO_DESKTOP_EXECUTABLE_PATH" -x -o /data/export/SB_Flowchart.svg  /data/SB_Flowchart.drawio
+          docker run -v ${PWD}:/data rlespinasse/drawio-desktop-headleio-desktop-headless "$DRAWIO_DESKTOP_EXECUTABLE_PATH" -x -o /data/export/SB_Flowchart.xml  /data/SB_Flowchart.drawio
 
       - name: Commit changed files
         uses: stefanzweifel/git-auto-commit-action@v4
