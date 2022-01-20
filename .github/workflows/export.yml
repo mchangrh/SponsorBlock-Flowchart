@@ -14,10 +14,10 @@ jobs:
 
       - name: Export files
         run: |
-          docker run -v $(PWD):/data rlespinasse/drawio-desktop-headless "$DRAWIO_DESKTOP_EXECUTABLE_PATH" -x -o /data/export/SB_Flowchart_small.png /data/SB_Flowchart.drawio
-          docker run -v $(PWD):/data rlespinasse/drawio-desktop-headless "$DRAWIO_DESKTOP_EXECUTABLE_PATH" -x -o /data/export/SB_Flowchart_large.png /data/SB_Flowchart.drawio
-          docker run -v $(PWD):/data rlespinasse/drawio-desktop-headless "$DRAWIO_DESKTOP_EXECUTABLE_PATH" -x -o /data/export/SB_Flowchart.svg /data/SB_Flowchart.drawio
-          docker run -v $(PWD):/data rlespinasse/drawio-desktop-headless "$DRAWIO_DESKTOP_EXECUTABLE_PATH" -x -o /data/export/SB_Flowchart.xml /data/SB_Flowchart.drawio
+          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless "$DRAWIO_DESKTOP_EXECUTABLE_PATH" -x -o /data/export/SB_Flowchart_small.png /data/SB_Flowchart.drawio
+          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless "$DRAWIO_DESKTOP_EXECUTABLE_PATH" -x -o /data/export/SB_Flowchart_large.png /data/SB_Flowchart.drawio
+          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless "$DRAWIO_DESKTOP_EXECUTABLE_PATH" -x -o /data/export/SB_Flowchart.svg /data/SB_Flowchart.drawio
+          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless "$DRAWIO_DESKTOP_EXECUTABLE_PATH" -x -o /data/export/SB_Flowchart.xml /data/SB_Flowchart.drawio
 
       - name: Commit changed files
         uses: stefanzweifel/git-auto-commit-action@v4
