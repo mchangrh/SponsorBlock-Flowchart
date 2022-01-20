@@ -9,8 +9,8 @@ jobs:
 
       - name: Export files
         run: |
-          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/SB_Flowchart_small.png -s 200 /data/SB_Flowchart.drawio
-          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/SB_Flowchart_large.png -s 300 /data/SB_Flowchart.drawio
+          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/SB_Flowchart_small.png -s 2 /data/SB_Flowchart.drawio
+          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/SB_Flowchart_large.png -s 3 /data/SB_Flowchart.drawio
           docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/SB_Flowchart.svg /data/SB_Flowchart.drawio
           docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/SB_Flowchart.xml /data/SB_Flowchart.drawio
 
