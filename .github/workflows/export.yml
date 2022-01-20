@@ -6,16 +6,34 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Export drawio files to asciidoctor and png files
-        uses: rlespinasse/drawio-export-action@v2
+      - name: Export small png files
+        uses: severgroup-tt/actions-drawio-cli@v0.0.2
         with:
-          format: [png, svg]
+          format: png
           transparent: false
-          output: export
+          scale: 200
+          output: export/SB_Flowchart_small.png
+
+      - name: Export large png files
+        uses: severgroup-tt/actions-drawio-cli@v0.0.2
+        with:
+          format: png
+          transparent: false
+          scale: 300
+          output: export/SB_Flowchart_large.png
+
+      - name: Export svg files
+        uses: severgroup-tt/actions-drawio-cli@v0.0.2
+        with:
+          format: svg
+          output: export/SB_Flowchart.svg
+      
+      - name: Export xml files
+        uses: severgroup-tt/actions-drawio-cli@v0.0.2
+        with:
+          format: xml
+          output: export/SB_Flowchart.xml
 
       - name: Commit changed files
         uses: stefanzweifel/git-auto-commit-action@v4
