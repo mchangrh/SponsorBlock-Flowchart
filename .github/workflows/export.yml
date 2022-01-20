@@ -9,8 +9,8 @@ jobs:
 
       - name: Export files
         run: |
-          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/SB_Flowchart_small.png /data/SB_Flowchart.drawio
-          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/SB_Flowchart_large.png /data/SB_Flowchart.drawio
+          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/SB_Flowchart_small.png -s 200 /data/SB_Flowchart.drawio
+          docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/SB_Flowchart_large.png -s 300 /data/SB_Flowchart.drawio
           docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/SB_Flowchart.svg /data/SB_Flowchart.drawio
           docker run -v ${{ github.workspace }}:/data rlespinasse/drawio-desktop-headless -x -o /data/SB_Flowchart.xml /data/SB_Flowchart.drawio
 
@@ -18,4 +18,3 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "export: create draw.io exported files"
-          commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
