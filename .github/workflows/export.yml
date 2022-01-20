@@ -12,12 +12,11 @@ jobs:
         with:
           image: rlespinasse/drawio-desktop-headless
           options:  -v ${{ github.workspace }}:/data
-          shell: /opt/drawio-desktop/entrypoint.sh
           run: |
-            -x -o /data/export/SB_Flowchart_small.png /data/SB_Flowchart.drawio
-            -x -o /data/export/SB_Flowchart_large.png /data/SB_Flowchart.drawio
-            -x -o /data/export/SB_Flowchart.svg /data/SB_Flowchart.drawio
-            -x -o /data/export/SB_Flowchart.xml /data/SB_Flowchart.drawio
+            /opt/drawio-desktop/entrypoint.sh -x -o /data/export/SB_Flowchart_small.png /data/SB_Flowchart.drawio
+            /opt/drawio-desktop/entrypoint.sh -x -o /data/export/SB_Flowchart_large.png /data/SB_Flowchart.drawio
+            /opt/drawio-desktop/entrypoint.sh -x -o /data/export/SB_Flowchart.svg /data/SB_Flowchart.drawio
+            /opt/drawio-desktop/entrypoint.sh -x -o /data/export/SB_Flowchart.xml /data/SB_Flowchart.drawio
 
       - name: Commit changed files
         uses: stefanzweifel/git-auto-commit-action@v4
