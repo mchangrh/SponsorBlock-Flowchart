@@ -11,6 +11,7 @@ jobs:
         run: |
           docker pull rlespinasse/drawio-desktop-headless
           ls -lah
+          pwd
 
       - name: Export files
         run: |
